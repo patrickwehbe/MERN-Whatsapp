@@ -9,8 +9,9 @@
 }
 
 .message__name {
-  position: absolute;
-  top: -25px;
+  margin-left: 5px;
+  position: relative;
+  top: -10px;
   font-weight: 700;
   font-size: small;
 }
