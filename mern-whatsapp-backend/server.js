@@ -63,22 +63,22 @@ mongoose.connect(connection_url, {
 const db = mongoose.connection;
 db.once("open", () => {
   console.log("db connected");
-});
 
-const msgCollection = db.collection("messagecontents");
-const changeStream = msgCollection.watch();
+  const msgCollection = db.collection("messagecontents");
+  const changeStream = msgCollection.watch();
 
-changeStream.on("change", (change) => {
-  console.log(change);
-  if (change.operationType === "insert") {
-    const messageDetails = change.fullDocument;
-    pusher.trigger("messages", "inserted", {
-      name: messageDetails.name,
-      message: messageDetails.message,
-    });
-  } else {
-    console.log("Error triggerring pusher");
-  }
+  changeStream.on("change", (change) => {
+    console.log(change);
+    if (change.operationType === "insert") {
+      const messageDetails = change.fullDocument;
+      pusher.trigger("messages", "inserted", {
+        name: messageDetails.name,
+        message: messageDetails.message,
+      });
+    } else {
+      console.log("Error triggerring pusher");
+    }
+  });
 });
 
 //listen
