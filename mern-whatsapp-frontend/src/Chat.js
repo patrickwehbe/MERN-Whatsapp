@@ -6,7 +6,6 @@ import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import AttachFile from "@material-ui/icons/AttachFile";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
-import Message from "./Message";
 import axios from "./axios";
 
 function Chat() {
@@ -46,9 +45,17 @@ function Chat() {
         </div>
       </div>
       <div className="chat__body">
-        <Message />
-        <Message className="message__receiver" />
-        <Message />
+        <p className="chat__message">
+          <span className="chat__name">Patrick Wehbe</span>
+          Hello there
+          <span className="chat__timestamp">{new Date().toUTCString()}</span>
+        </p>
+
+        <p className="chat__message chat__receiver">
+          <span className="chat__name">Patrick Wehbe</span>
+          Hello there
+          <span className="chat__timestamp">{new Date().toUTCString()}</span>
+        </p>
       </div>
       <div className="chat__footer">
         <InsertEmoticonIcon />
