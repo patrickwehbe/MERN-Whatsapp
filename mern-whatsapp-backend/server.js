@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import Messages from "./dbMessages.js";
 import Pusher from "pusher";
+import cors from "cors";
 
 //app config
 const app = express();
@@ -22,11 +23,14 @@ pusher.trigger("my-channel", "my-event", {
 //Middleware
 
 app.use(express.json());
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  next();
-});
+
+app.use(cors());
+
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Headers", "*");
+//   next();
+// });
 
 //API Routes
 app.get("/", (req, res) => res.status(200).send("Hello, world"));
