@@ -6,7 +6,7 @@ import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import AttachFile from "@material-ui/icons/AttachFile";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
-import axios from "./axios";
+import axios from "./axios.js";
 
 function Chat({ messages }) {
   const [input, setInput] = useState("");
