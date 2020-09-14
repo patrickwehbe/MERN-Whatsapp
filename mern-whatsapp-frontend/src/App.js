@@ -9,26 +9,32 @@ function App() {
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     axios.get("/messages/sync").then((response) => {
-      console.log(response.data);
+      setMessages(response.data);
     });
   }, []);
 
   useEffect(() => {
-    var pusher = new Pusher("e5f2ec6decf14306ba9d", {
+    const pusher = new Pusher("e5f2ec6decf14306ba9d", {
       cluster: "eu",
     });
 
-    var channel = pusher.subscribe("my-channel");
-    channel.bind("my-event", function (data) {
-      alert(JSON.stringify(data));
+    const channel = pusher.subscribe("messages");
+    channel.bind("inserted", function (newMessage) {
+      setMessages([...messages, newMessage]);
     });
-  }, []);
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+  }, [messages]);
+
+  console.log(messages);
 
   return (
     <div className="app">
       <div className="app__body">
         <Sidebar />
-        <Chat />
+        <Chat messages={messages} />
       </div>
     </div>
   );
