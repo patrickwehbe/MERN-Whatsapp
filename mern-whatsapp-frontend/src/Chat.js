@@ -6,7 +6,7 @@ import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import AttachFile from "@material-ui/icons/AttachFile";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
-import axios from "./axios";
+import axios from "axios";
 
 function Chat({ messages }) {
   const [input, setInput] = useState("");
@@ -14,7 +14,7 @@ function Chat({ messages }) {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    await axios.post("/messages/new", {
+    await axios.post("http://localhost:9000/messages/new", {
       message: input,
       name: "Patrick Wehbe",
       timestamp: "Just now",
