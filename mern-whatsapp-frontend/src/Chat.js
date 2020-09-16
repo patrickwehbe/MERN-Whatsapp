@@ -14,7 +14,7 @@ function Chat({ messages }) {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:9000/messages/new", {
+    await axios.post("https://mern-whatsapp-clone.herokuapp.com/messages/new", {
       message: input,
       name: "Patrick Wehbe",
       timestamp: "Just now",
